@@ -16,6 +16,12 @@ public class PhotonSetting : MonoBehaviour
     [SerializeField] Dropdown region;
     //public TMP_Dropdown
 
+
+    private void Awake()
+    {
+        PlayFabSettings.TitleId = "{{54ABD}}";
+    }
+
     void Start()
     {
       
@@ -25,6 +31,8 @@ public class PhotonSetting : MonoBehaviour
     //LoginResult <- 로그인 성공 여부 반환(playfab에 내장되어있다.)
     public void LoginSuccess(LoginResult result)
     {
+
+
         //마스터 클라이언트를 기준으로 씬을 동기화할 지 안할지 결정하는 기능
         //fasle=동기화를 하지 않겠다.
         PhotonNetwork.AutomaticallySyncScene = false;
@@ -39,6 +47,9 @@ public class PhotonSetting : MonoBehaviour
         //dropdown형태일 경우, 
         PhotonNetwork.PhotonServerSettings.AppSettings.FixedRegion = region.options[region.value].text;
 
+
+        //서버 접속
+        PhotonNetwork.LoadLevel("Photon Lobby");
     }
 
     public void LoginFailure(PlayFabError error)
@@ -74,5 +85,19 @@ public class PhotonSetting : MonoBehaviour
         );
     }
    
+    public void Login()
+    {
+        var request = new LoginWithEmailAddressRequest
+        {
+            Email = email.text,
+            Password=password.text,
+         };
 
+        PlayFabClientAPI.LoginWithEmailAddress
+            (
+                request,
+                LoginSuccess,
+                LoginFailure
+            );
+    }
 }
