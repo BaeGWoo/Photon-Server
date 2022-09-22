@@ -1,18 +1,46 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class PhotonManager : MonoBehaviour
+//using System.Collections;
+//using System.Collections.Generic;
+//using UnityEngine;
+using Photon.Pun;
+using UnityEngine.UI;
+using Photon.Realtime;
+public class PhotonManager : MonoBehaviourPunCallbacks
 {
-    // Start is called before the first frame update
+    public Button connect;
+    public Text currentRegion;
+    public Text currentLobby;
+
+
+    public void Connect()
+    {
+        //서버접속
+        PhotonNetwork.ConnectUsingSettings();
+    }
+
+
+    public void Update()
+    {
+        currentRegion.text = PhotonNetwork.PhotonServerSettings.AppSettings.FixedRegion;
+
+        switch(Data.count)
+        {
+            case 0:
+                currentLobby.text = "First Lobby";
+                break;
+
+            case 1:
+                currentLobby.text = "Second Lobby";
+                break;
+
+            case 2:
+                currentLobby.text = "Third Lobby";
+                break;
+        }
+    }
     void Start()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }
