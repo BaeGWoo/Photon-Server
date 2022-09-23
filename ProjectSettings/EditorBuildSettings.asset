@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Photon Lobby.unity
     guid: 02201d167403b964d96d413495b9f08f
+  - enabled: 1
+    path: Assets/Scenes/Photon Room.unity
+    guid: 51d3242d60bc880478788614a690dab7
   m_configObjects: {}

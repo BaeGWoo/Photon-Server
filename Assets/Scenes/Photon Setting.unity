@@ -2186,6 +2186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43648778704deed438ff5e193b8569e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firstInput: {fileID: 766490370}
   email: {fileID: 766490370}
   password: {fileID: 1753173806}
   username: {fileID: 218539549}

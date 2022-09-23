@@ -21,10 +21,14 @@ public class PopUp : MonoBehaviour
     {
         if(gamePanel==null)
         {
-           Instantiate(Resources.Load<GameObject>("Game Panel"));
+           gamePanel = Resources.Load<GameObject>("Game Panel");
         }
 
-        PopUp window = gamePanel.GetComponent<PopUp>();
+
+        GameObject obj = Instantiate(gamePanel);
+
+
+        PopUp window = obj.GetComponent<PopUp>();
         window.UpdateContent(title, message);
 
         return window;
