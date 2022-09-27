@@ -29,7 +29,8 @@ public class PhotonSetting : MonoBehaviour
         //처음은 Email Input Field를 선택하도록 설정합니다.
         firstInput.Select();
 
-        PlayFabSettings.TitleId = "{{54ABD}}";
+        PlayFabSettings.TitleId = "54ABD";
+       
     }
 
     private void Update()
