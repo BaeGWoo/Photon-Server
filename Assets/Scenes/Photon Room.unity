@@ -731,10 +731,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 30
+    m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 3
+    m_MinSize: 2
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -784,7 +784,8 @@ MonoBehaviour:
   roomPerson: {fileID: 1734337525}
   roomCreate: {fileID: 1846387939}
   roomJoin: {fileID: 1633350802}
-  roomPrefab: {fileID: 4209056146210697351, guid: 5d0f39f69e1dd4545b3b13f23911e4f4, type: 3}
+  roomPrefab: {fileID: 4209056146210697351, guid: 5d0f39f69e1dd4545b3b13f23911e4f4,
+    type: 3}
   roomContent: {fileID: 1057572896}
 --- !u!4 &1032570468
 Transform:
@@ -2138,10 +2139,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 30
+    m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 3
+    m_MinSize: 2
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
