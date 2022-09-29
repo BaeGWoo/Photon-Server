@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
@@ -10,10 +8,14 @@ public class PhotonControl : MonoBehaviourPun
 
     [SerializeField] Camera cam;
 
+    private Animator animator;
+
 
     //IsMine : 나 자신만 플레이하고 싶을때
     void Start()
     {
+        animator = GetComponent<Animator>();
+
         if (photonView.IsMine)
         {
             Camera.main.gameObject.SetActive(false);
@@ -30,6 +32,13 @@ public class PhotonControl : MonoBehaviourPun
     {
         //현재 플레이어가 나 자신이 아니라면
         if (!photonView.IsMine) return;
+
+
+
+        if(Input.GetButtonDown("Fire1"))
+        {
+            animator.SetBool("Attack",true);
+        }
 
 
         Vector3 direction = new Vector3
