@@ -37,7 +37,7 @@ public class PhotonControl : MonoBehaviourPun
 
         if(Input.GetButtonDown("Fire1"))
         {
-            animator.SetBool("Attack",true);
+            animator.SetTrigger("Attack");
         }
 
 
