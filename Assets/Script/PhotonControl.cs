@@ -58,4 +58,18 @@ public class PhotonControl : MonoBehaviourPun
             );
 
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.name=="Crystal(Clone)")
+        {
+            PhotonView view = other.gameObject.GetComponent<PhotonView>();
+
+            if(view.IsMine)//충돌한 물체가 자기 자신이라면
+            {
+                //충돌한 네트워크 객체를 파괴합니다.
+                PhotonNetwork.Destroy(other.gameObject);
+            }
+        }
+    }
 }
