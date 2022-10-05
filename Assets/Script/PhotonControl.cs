@@ -1,7 +1,10 @@
+using PlayFab;
+using PlayFab.ClientModels;
 using UnityEngine;
 using Photon.Pun;
+using System.Collections.Generic;
 
-public class PhotonControl : MonoBehaviourPun
+public class PhotonControl : MonoBehaviourPun, IPunObservable
 {
     [SerializeField] float speed = 5.0f;
     [SerializeField] float angleSpeed;
@@ -10,6 +13,7 @@ public class PhotonControl : MonoBehaviourPun
 
     private Animator animator;
 
+    public int score;
 
     //IsMine : 나 자신만 플레이하고 싶을때
     void Start()
@@ -63,6 +67,12 @@ public class PhotonControl : MonoBehaviourPun
     {
         if(other.gameObject.name=="Crystal(Clone)")
         {
+            if (photonView.IsMine)
+                score++;
+
+            PlayFabDataSave();
+                //UIManager.instance.score++;
+
             PhotonView view = other.gameObject.GetComponent<PhotonView>();
 
             if(view.IsMine)//충돌한 물체가 자기 자신이라면
@@ -71,5 +81,30 @@ public class PhotonControl : MonoBehaviourPun
                 PhotonNetwork.Destroy(other.gameObject);
             }
         }
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        score = (int)stream.ReceiveNext();
+    }
+
+    public void PlayFabDataSave()
+    {
+        PlayFabClientAPI.UpdatePlayerStatistics
+            (
+                new UpdatePlayerStatisticsRequest
+                {
+                    Statistics = new List<StatisticUpdate>
+                    {
+                        new StatisticUpdate
+                        {
+                            StatisticName="Score",Value=score
+                        },
+                    }
+                },
+                //무명함수, 람다
+                (result) => { Debug.Log("값 저장 성공"); },
+                (error) => { Debug.Log("값 저장 실패"); }
+            );
     }
 }
