@@ -85,7 +85,10 @@ public class PhotonControl : MonoBehaviourPun, IPunObservable
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
-        score = (int)stream.ReceiveNext();
+        if (stream.IsWriting)
+            stream.SendNext(score);
+        else
+            score = (int)stream.ReceiveNext();
     }
 
     public void PlayFabDataSave()
@@ -103,8 +106,8 @@ public class PhotonControl : MonoBehaviourPun, IPunObservable
                     }
                 },
                 //무명함수, 람다
-                (result) => { Debug.Log("값 저장 성공"); },
-                (error) => { Debug.Log("값 저장 실패"); }
+                (result) => { UIManager.instance.scoreText.text = "Current Crystal" + score.ToString(); },
+                (error) => { UIManager.instance.scoreText.text = "No value saved"; }
             );
     }
 }
