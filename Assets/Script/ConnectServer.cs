@@ -6,6 +6,51 @@ public class ConnectServer : MonoBehaviourPunCallbacks
 {
     private string serverName;
 
+    [SerializeField] GameObject[] character;
+
+
+    private void Start()
+    {
+        character[DataManager.characterCount].SetActive(true);
+    }
+
+    public void RightcharacterSelect()
+    {
+        DataManager.characterCount++;
+
+        for(int i=0;i<character.Length;i++)
+        {
+            character[i].SetActive(false);
+        }
+
+  
+        if(DataManager.characterCount>=3)
+        {
+            DataManager.characterCount = 0;
+        }
+
+        character[DataManager.characterCount].SetActive(true);
+    }
+
+
+
+    public void LeftcharacterSelect()
+    {
+        DataManager.characterCount--;
+
+        for (int i = 0; i < character.Length; i++)
+        {
+            character[i].SetActive(false);
+        }
+
+        if (DataManager.characterCount <0)
+        {
+            DataManager.characterCount = 2;
+        }
+        character[DataManager.characterCount].SetActive(true);
+    }
+
+
     public void SelectLobby(string text)
     {
         serverName = text;

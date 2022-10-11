@@ -110,4 +110,6 @@ public class PhotonControl : MonoBehaviourPun, IPunObservable
                 (error) => { UIManager.instance.scoreText.text = "No value saved"; }
             );
     }
+    
+  
 }
